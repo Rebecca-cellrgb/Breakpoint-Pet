@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>断点萌宠软件原型</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div>
+          <p class="eyebrow">HARDWARE-FREE PROTOTYPE</p>
+          <h1>断点萌宠</h1>
+          <p>用按钮模拟摄像头事件，用文字模拟语音识别。</p>
+        </div>
+        <div class="status-card">
+          <span>当前状态</span>
+          <strong id="state">加载中</strong>
+          <small id="feedback">等待设备反馈</small>
+        </div>
+      </header>
+
+      <section class="panel controls">
+        <h2>一、模拟摄像头</h2>
+        <div class="button-row">
+          <button data-endpoint="/api/events/pre-leave">检测到准备离座</button>
+          <button data-endpoint="/api/events/return">检测到用户归来</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>二、模拟语音</h2>
+        <form id="voice-form">
+          <input id="voice-text" autocomplete="off" placeholder="例如：需要 / 正在写报告，回来继续第三部分 / 记录断点">
+          <button type="submit">发送语音文本</button>
+        </form>
+        <div class="examples">
+          <button class="chip" data-voice="需要">需要</button>
+          <button class="chip" data-voice="不需要">不需要</button>
+          <button class="chip" data-voice="记录断点">记录断点</button>
+          <button class="chip" data-voice="我正在写报名材料，回来继续第三部分">示例断点</button>
+          <button class="chip" data-voice="任务完成">任务完成</button>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>对话记录</h2>
+          <div id="history" class="history"></div>
+        </article>
+        <article class="panel">
+          <h2>已保存断点</h2>
+          <div id="breakpoints" class="breakpoints"></div>
+        </article>
+      </section>
+
+      <footer>
+        <button id="reset" class="danger">清空测试数据</button>
+      </footer>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
+
